@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="20260216-1-audit-event" author="migration-script">
+        <createSequence sequenceName="audit_event_id_seq"
+                        schemaName="basic"
+                        incrementBy="1"
+                        startValue="1"/>
+
+        <createTable tableName="audit_event" schemaName="basic" remarks="Audit events table">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="actor" type="VARCHAR(255)"/>
+            <column name="action" type="VARCHAR(50)"/>
+            <column name="resource_type" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resource_id" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="old_metadata" type="TEXT"/>
+            <column name="new_metadata" type="TEXT"/>
+            <column name="correlation_id" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex indexName="idx_audit_created_at" tableName="audit_event" schemaName="basic">
+            <column name="created_at"/>
+        </createIndex>
+        <createIndex indexName="idx_audit_action" tableName="audit_event" schemaName="basic">
+            <column name="action"/>
+        </createIndex>
+        <createIndex indexName="idx_audit_resource_type" tableName="audit_event" schemaName="basic">
+            <column name="resource_type"/>
+        </createIndex>
+        <createIndex indexName="idx_audit_resource_id" tableName="audit_event" schemaName="basic">
+            <column name="resource_id"/>
+        </createIndex>
+        <createIndex indexName="idx_audit_correlation_id" tableName="audit_event" schemaName="basic">
+            <column name="correlation_id"/>
+        </createIndex>
+
+    </changeSet>
+
+</databaseChangeLog>
