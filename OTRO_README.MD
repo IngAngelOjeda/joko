@@ -104,3 +104,35 @@ postman request 'localhost:8080/api/secure/audit-events/list?orderAsc=false&page
 
 ### Qué se dejó fuera por tiempo y qué se mejoraría con más horas
 * Se podria haber configurado para que solo sea visible por endpoint seguros, una mejor integracion y tal vez un flujo mas limpio.
+* Mejores validaciones en la API de auditoria, manejo de errores y paginacion.
+* Implementar seguridad y permisos de acceso a la API de auditoría.
+* Mejorar la estructura de los eventos de auditoría y la metadata asociada.
+
+## Interacciones con el asistente de IA (consultas técnicas)
+
+El asistente de IA fue utilizado principalmente como herramienta de apoyo técnico y validación de decisiones durante el desarrollo. Las consultas se enfocaron en problemas específicos del proyecto y no en la generación automática completa del sistema.
+
+### Consultas sobre arquitectura y diseño
+- Validación del uso de CorrelationId para trazabilidad en sistemas backend
+- Recomendaciones sobre manejo de metadata (old/new) en eventos de auditoría
+- Buenas prácticas para estructurar DTO, Entity y Repository en Spring Boot
+
+### Consultas sobre debugging y resolución de errores
+- Diagnóstico de errores 401 en Spring Security y configuración de rutas protegidas
+- Interpretación de logs de Spring Boot y configuración de logging en Windows
+
+### Consultas sobre integración con el starter kit
+- Adaptación del código a la arquitectura existente del proyecto (Manager/Service/Repository)
+- Uso correcto de `AuditEventService` dentro de la lógica de negocio
+- Manejo del SecurityContext para obtener el actor autenticado
+- Implementación consistente con las convenciones del framework Joko
+
+### Consultas sobre base de datos y configuración
+- Conexión y uso de la base de datos H2 embebida
+- Interpretación de propiedades de configuración de Spring
+- Manejo de scripts de inicialización y schema
+
+### Consultas sobre buenas prácticas backend
+- Uso de filtros para manejo de contexto por request
+- Implementación de logging con MDC
+- Estrategias de trazabilidad y observabilidad en APIs REST
